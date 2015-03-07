@@ -154,7 +154,8 @@ class DLSeatReader:
 			seatParams=varInfo[varid]
 			for tkey,tvalue in seatParams.iteritems():
 				seatInfo[seatName][tkey]=tvalue
-
+		
+		self.varInfo=varInfo
 		return seatInfo
 	
 	def prettyPrintSeats(self,seatInfo):
