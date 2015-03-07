@@ -35,7 +35,7 @@ will quit the python cmd
 Test sequence:
 from DLSeatReader import DLSeatReader
 DLSR=DLSeatReader()
-DLSR.setFlightInfo("DL",477,"JFK","LAX","22Apr")
+DLSR.setFlightInfo("DL",110,"ATL","LAX","22Apr")
 seatUrl=DLSR.createSeatUrl()
 DLSR.prepCookie(seatUrl)
 reqStr=DLSR.createSeatDataString(seatUrl)
@@ -167,19 +167,20 @@ class DLSeatReader:
 		pstr='FLIFO: %s, %s, %s, %s\n\n' % (self.flightInfo["CARRIER"]+self.flightInfo["NUM"],self.flightInfo["ORG"],self.flightInfo["DST"],self.flightInfo["DATE"])
 		for i in range(maxRowNum):
 			rstr=''
+			rempty=1
 			for j in range(len(varSeatLetters)):
 				tsname=str(i+1)+varSeatLetters[j]
 				tsi=seatInfo[tsname]
-				if len(tsi) == 0 and len(rstr) > 0:
-					rstr += '  '
 				if len(tsi) == 0:
+					rstr += '  '
 					continue
+				rempty=0
 				if tsi['seatAvailable'] == 'true':
 					rstr += openstr + ' '
 				else:
 					rstr += unavail + ' '
 				
-			if len(rstr) > 0:
+			if rempty == 0:
 				rowname = '%2d' % (i+1)
 				pstr += rowname + ': ' + rstr + '\n'
 
