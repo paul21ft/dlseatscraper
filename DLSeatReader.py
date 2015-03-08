@@ -284,7 +284,8 @@ class DLSeatReader:
 		blockstr='B'
 		varSeatLetters=['A','B','C','D','E','F','G','H','I','J','K']
 		maxRowNum=500
-		pstr='FLIFO: %s, %s, %s, %s\n\n' % (self.flightInfo["CARRIER"]+self.flightInfo["NUM"],self.flightInfo["ORG"],self.flightInfo["DST"],self.flightInfo["DATE"])
+		pstr='FLIFO: %s, %s, %s, %s\n' % (self.flightInfo["CARRIER"]+self.flightInfo["NUM"],self.flightInfo["ORG"],self.flightInfo["DST"],self.flightInfo["DATE"])
+		pstr+='O-Open X-Occupied B-Blocked\n Row: A B C D E F G...\n\n'
 		for i in range(maxRowNum):
 			rstr=''
 			rempty=1
